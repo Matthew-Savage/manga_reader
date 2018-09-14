@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="testPane" fx:id="testPane" prefHeight="312.0" prefWidth="292.0" stylesheets="@loader.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="antagonisticapple.ControllerLoader">
+   <children>
+      <TextField id="textSize12" fx:id="preloadProgressTop" alignment="CENTER" editable="false" layoutX="40.0" layoutY="212.0" prefHeight="28.0" prefWidth="199.0" />
+      <TextField id="textSize12" fx:id="preloadProgressCenter" alignment="CENTER" editable="false" layoutX="40.0" layoutY="213.0" prefHeight="28.0" prefWidth="199.0" />
+      <TextField id="textSize12" fx:id="preloadProgressBottom" alignment="CENTER" editable="false" layoutX="40.0" layoutY="225.0" prefHeight="28.0" prefWidth="199.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+.root {
+    -fx-background-color: transparent;
+}
+
+#testPane {
+    -fx-background-image: url("../assets/preload.png");
+}
+
+#textSize12 {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-background-image: null;
+    -fx-border-color: transparent;
+    -fx-font-family: "Open Sans";
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e2e30;
+    -fx-font-size: 12px;
+    -fx-prompt-text-fill: #b6b6b9;
+}

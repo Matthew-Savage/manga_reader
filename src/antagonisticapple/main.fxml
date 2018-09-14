@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane fx:id="main" maxHeight="1026.0" maxWidth="1920.0" minHeight="1026.0" minWidth="1920.0" onKeyPressed="#turnMangaBookPage" prefHeight="1026.0" prefWidth="1920.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="antagonisticapple.ControllerMain">
+   <children>
+      <Pane id="catalogPane" fx:id="catalogPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">
+         <children>
+            <Pane fx:id="thumbPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0">
+               <children>
+                  <ImageView id="thumb0" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb1" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb2" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb3" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb4" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb5" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb6" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb7" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb8" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb9" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb10" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb11" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb12" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb13" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb14" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb15" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb16" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb17" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb18" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb19" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb20" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb21" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb22" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb23" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb24" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb25" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb26" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb27" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb28" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="thumb29" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+               </children></Pane>
+            <Pane fx:id="favoriteOverlayPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0">
+               <children>
+                  <ImageView id="favoriteOverlay0" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay1" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay2" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay3" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay4" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay5" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay6" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay7" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay8" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay9" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay10" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay11" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay12" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay13" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay14" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay15" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay16" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay17" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay18" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay19" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay20" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay21" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay22" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay23" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay24" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay25" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay26" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay27" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay28" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="favoriteOverlay29" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+               </children></Pane>
+            <Pane fx:id="newChaptersOverlayPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0">
+               <children>
+                  <ImageView id="newChaptersOverlay0" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay1" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay2" fitHeight="250.0" fitWidth="167.0" layoutX="35.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay3" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay4" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay5" fitHeight="250.0" fitWidth="167.0" layoutX="222.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay6" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay7" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay8" fitHeight="250.0" fitWidth="167.0" layoutX="409.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay9" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay10" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay11" fitHeight="250.0" fitWidth="167.0" layoutX="596.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay12" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay13" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay14" fitHeight="250.0" fitWidth="167.0" layoutX="783.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay15" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay16" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay17" fitHeight="250.0" fitWidth="167.0" layoutX="970.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay18" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay19" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay20" fitHeight="250.0" fitWidth="167.0" layoutX="1157.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay21" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay22" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay23" fitHeight="250.0" fitWidth="167.0" layoutX="1344.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay24" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay25" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay26" fitHeight="250.0" fitWidth="167.0" layoutX="1531.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay27" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="152.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay28" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="422.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="newChaptersOverlay29" fitHeight="250.0" fitWidth="167.0" layoutX="1718.0" layoutY="692.0" onMouseClicked="#popupOpen" pickOnBounds="true" preserveRatio="true" />
+               </children></Pane>
+            <ChoiceBox fx:id="currentActivity" layoutX="1579.0" layoutY="20.0" maxHeight="31.0" maxWidth="234.0" minHeight="31.0" minWidth="234.0" onAction="#choiceBox" prefHeight="31.0" prefWidth="234.0" />
+            <Pane fx:id="genrePane" maxHeight="140.0" maxWidth="1555.0" minHeight="140.0" minWidth="1555.0" prefHeight="140.0" prefWidth="1555.0">
+               <children>
+            <CheckBox id="genre0" allowIndeterminate="true" indeterminate="true" layoutX="20.0" layoutY="20.0" maxHeight="35.0" maxWidth="96.0" minHeight="35.0" minWidth="96.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="96.0" />
+            <CheckBox id="genre1" allowIndeterminate="true" indeterminate="true" layoutX="126.0" layoutY="20.0" maxHeight="35.0" maxWidth="90.0" minHeight="35.0" minWidth="90.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="90.0" />
+            <CheckBox id="genre2" allowIndeterminate="true" indeterminate="true" layoutX="226.0" layoutY="20.0" maxHeight="35.0" maxWidth="126.0" minHeight="35.0" minWidth="126.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="126.0" />
+            <CheckBox id="genre3" allowIndeterminate="true" indeterminate="true" layoutX="363.0" layoutY="20.0" maxHeight="35.0" maxWidth="103.0" minHeight="35.0" minWidth="103.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="103.0" />
+            <CheckBox id="genre4" allowIndeterminate="true" indeterminate="true" layoutX="476.0" layoutY="20.0" maxHeight="35.0" maxWidth="109.0" minHeight="35.0" minWidth="109.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="109.0" />
+            <CheckBox id="genre5" allowIndeterminate="true" indeterminate="true" layoutX="595.0" layoutY="20.0" maxHeight="35.0" maxWidth="118.0" minHeight="35.0" minWidth="118.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="118.0" />
+            <CheckBox id="genre6" allowIndeterminate="true" indeterminate="true" layoutX="723.0" layoutY="20.0" maxHeight="35.0" maxWidth="95.0" minHeight="35.0" minWidth="95.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="95.0" />
+            <CheckBox id="genre7" allowIndeterminate="true" indeterminate="true" layoutX="827.0" layoutY="20.0" maxHeight="35.0" maxWidth="83.0" minHeight="35.0" minWidth="83.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="83.0" />
+            <CheckBox id="genre8" allowIndeterminate="true" indeterminate="true" layoutX="920.0" layoutY="20.0" maxHeight="35.0" maxWidth="106.0" minHeight="35.0" minWidth="106.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="106.0" />
+            <CheckBox id="genre9" allowIndeterminate="true" indeterminate="true" layoutX="1036.0" layoutY="20.0" maxHeight="35.0" maxWidth="160.0" minHeight="35.0" minWidth="160.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="160.0" />
+            <CheckBox id="genre10" allowIndeterminate="true" indeterminate="true" layoutX="1206.0" layoutY="20.0" maxHeight="35.0" maxWidth="93.0" minHeight="35.0" minWidth="93.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="93.0" />
+            <CheckBox id="genre11" allowIndeterminate="true" indeterminate="true" layoutX="1310.0" layoutY="20.0" maxHeight="35.0" maxWidth="126.0" minHeight="35.0" minWidth="126.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="126.0" />
+            <CheckBox id="genre12" allowIndeterminate="true" indeterminate="true" layoutX="1447.0" layoutY="20.0" maxHeight="35.0" maxWidth="104.0" minHeight="35.0" minWidth="104.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="104.0" />
+            <CheckBox id="genre13" allowIndeterminate="true" indeterminate="true" layoutX="20.0" layoutY="61.0" maxHeight="35.0" maxWidth="78.0" minHeight="35.0" minWidth="78.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="78.0" />
+            <CheckBox id="genre14" allowIndeterminate="true" indeterminate="true" layoutX="105.0" layoutY="61.0" maxHeight="35.0" maxWidth="108.0" minHeight="35.0" minWidth="108.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="108.0" />
+            <CheckBox id="genre15" allowIndeterminate="true" indeterminate="true" layoutX="220.0" layoutY="61.0" maxHeight="35.0" maxWidth="111.0" minHeight="35.0" minWidth="111.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="111.0" />
+            <CheckBox id="genre16" allowIndeterminate="true" indeterminate="true" layoutX="338.0" layoutY="61.0" maxHeight="35.0" maxWidth="144.0" minHeight="35.0" minWidth="144.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="144.0" />
+            <CheckBox id="genre17" allowIndeterminate="true" indeterminate="true" layoutX="489.0" layoutY="61.0" maxHeight="35.0" maxWidth="101.0" minHeight="35.0" minWidth="101.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="101.0" />
+            <CheckBox id="genre18" allowIndeterminate="true" indeterminate="true" layoutX="597.0" layoutY="61.0" maxHeight="35.0" maxWidth="94.0" minHeight="35.0" minWidth="94.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="94.0" />
+            <CheckBox id="genre19" allowIndeterminate="true" indeterminate="true" layoutX="698.0" layoutY="61.0" maxHeight="35.0" maxWidth="105.0" minHeight="35.0" minWidth="105.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="105.0" />
+            <CheckBox id="genre20" allowIndeterminate="true" indeterminate="true" layoutX="810.0" layoutY="61.0" maxHeight="35.0" maxWidth="107.0" minHeight="35.0" minWidth="107.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="107.0" />
+            <CheckBox id="genre21" allowIndeterminate="true" indeterminate="true" layoutX="924.0" layoutY="61.0" maxHeight="35.0" maxWidth="115.0" minHeight="35.0" minWidth="115.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="115.0" />
+            <CheckBox id="genre22" allowIndeterminate="true" indeterminate="true" layoutX="1046.0" layoutY="61.0" maxHeight="35.0" maxWidth="159.0" minHeight="35.0" minWidth="159.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="159.0" />
+            <CheckBox id="genre23" allowIndeterminate="true" indeterminate="true" layoutX="1212.0" layoutY="61.0" maxHeight="35.0" maxWidth="114.0" minHeight="35.0" minWidth="114.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="114.0" />
+            <CheckBox id="genre24" allowIndeterminate="true" indeterminate="true" layoutX="1333.0" layoutY="61.0" maxHeight="35.0" maxWidth="132.0" minHeight="35.0" minWidth="132.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="132.0" />
+            <CheckBox id="genre25" allowIndeterminate="true" indeterminate="true" layoutX="1472.0" layoutY="61.0" maxHeight="35.0" maxWidth="79.0" minHeight="35.0" minWidth="79.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="79.0" />
+            <CheckBox id="genre26" allowIndeterminate="true" indeterminate="true" layoutX="20.0" layoutY="102.0" maxHeight="35.0" maxWidth="93.0" minHeight="35.0" minWidth="93.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="93.0" />
+            <CheckBox id="genre27" allowIndeterminate="true" indeterminate="true" layoutX="125.0" layoutY="102.0" maxHeight="35.0" maxWidth="99.0" minHeight="35.0" minWidth="99.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="99.0" />
+            <CheckBox id="genre28" allowIndeterminate="true" indeterminate="true" layoutX="235.0" layoutY="102.0" maxHeight="35.0" maxWidth="116.0" minHeight="35.0" minWidth="116.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="116.0" />
+            <CheckBox id="genre29" allowIndeterminate="true" indeterminate="true" layoutX="362.0" layoutY="102.0" maxHeight="35.0" maxWidth="113.0" minHeight="35.0" minWidth="113.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="113.0" />
+            <CheckBox id="genre30" allowIndeterminate="true" indeterminate="true" layoutX="486.0" layoutY="102.0" maxHeight="35.0" maxWidth="131.0" minHeight="35.0" minWidth="131.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="131.0" />
+            <CheckBox id="genre31" allowIndeterminate="true" indeterminate="true" layoutX="628.0" layoutY="102.0" maxHeight="35.0" maxWidth="132.0" minHeight="35.0" minWidth="132.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="132.0" />
+            <CheckBox id="genre32" allowIndeterminate="true" indeterminate="true" layoutX="772.0" layoutY="102.0" maxHeight="35.0" maxWidth="83.0" minHeight="35.0" minWidth="83.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="83.0" />
+            <CheckBox id="genre33" allowIndeterminate="true" indeterminate="true" layoutX="866.0" layoutY="102.0" maxHeight="35.0" maxWidth="95.0" minHeight="35.0" minWidth="95.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="95.0" />
+            <CheckBox id="genre34" allowIndeterminate="true" indeterminate="true" layoutX="972.0" layoutY="102.0" maxHeight="35.0" maxWidth="154.0" minHeight="35.0" minWidth="154.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="154.0" />
+            <CheckBox id="genre35" allowIndeterminate="true" indeterminate="true" layoutX="1137.0" layoutY="102.0" maxHeight="35.0" maxWidth="107.0" minHeight="35.0" minWidth="107.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="107.0" />
+            <CheckBox id="genre36" allowIndeterminate="true" indeterminate="true" layoutX="1256.0" layoutY="102.0" maxHeight="35.0" maxWidth="123.0" minHeight="35.0" minWidth="123.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="123.0" />
+            <CheckBox id="genre37" allowIndeterminate="true" indeterminate="true" layoutX="1389.0" layoutY="102.0" maxHeight="35.0" maxWidth="76.0" minHeight="35.0" minWidth="76.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="76.0" />
+            <CheckBox id="genre38" allowIndeterminate="true" indeterminate="true" layoutX="1476.0" layoutY="102.0" maxHeight="35.0" maxWidth="75.0" minHeight="35.0" minWidth="75.0" mnemonicParsing="false" onAction="#genreIncludeExclude" prefHeight="35.0" prefWidth="75.0" />
+               </children>
+            </Pane>
+            <TextField id="textSize24" fx:id="currentPageNumberDisplay" alignment="BASELINE_LEFT" editable="false" layoutX="1642.0" layoutY="958.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField id="textSize24" fx:id="lastPageNumberDisplay" alignment="BASELINE_LEFT" editable="false" layoutX="1704.0" layoutY="958.0" prefHeight="25.0" prefWidth="80.0" />
+                  <Button id="pageFirst" fx:id="pageFirst" layoutX="727.0" layoutY="968.0" maxHeight="35.0" maxWidth="67.0" minHeight="35.0" minWidth="67.0" mnemonicParsing="false" onAction="#turnIndexPage" prefHeight="35.0" prefWidth="67.0" />
+            <Button id="pagePrevious" fx:id="pagePrevious" layoutX="811.0" layoutY="968.0" maxHeight="35.0" maxWidth="67.0" minHeight="35.0" minWidth="67.0" mnemonicParsing="false" onAction="#turnIndexPage" prefHeight="35.0" prefWidth="67.0" />
+            <Pane id="pageNumTextPane" fx:id="pageNumTextPane" layoutX="895.0" layoutY="963.0" maxHeight="46.0" maxWidth="133.0" minHeight="46.0" minWidth="133.0" prefHeight="46.0" prefWidth="133.0">
+               <children>
+                  <TextField id="textSize18" fx:id="enterPageNumber" alignment="CENTER" layoutY="4.0" maxHeight="30.0" maxWidth="132.0" minHeight="30.0" minWidth="132.0" onAction="#gotoSpecificPage" prefHeight="30.0" prefWidth="132.0" />
+               </children></Pane>
+            <Button id="pageNext" fx:id="pageNext" layoutX="1045.0" layoutY="968.0" maxHeight="35.0" maxWidth="67.0" minHeight="35.0" minWidth="67.0" mnemonicParsing="false" onAction="#turnIndexPage" prefHeight="35.0" prefWidth="67.0" />
+            <Button id="pageLast" fx:id="pageLast" layoutX="1129.0" layoutY="968.0" maxHeight="35.0" maxWidth="67.0" minHeight="35.0" minWidth="67.0" mnemonicParsing="false" onAction="#lastPage" prefHeight="35.0" prefWidth="67.0" />
+            <Button id="resetButton" layoutX="1737.0" layoutY="104.0" maxHeight="35.0" maxWidth="120.0" minHeight="35.0" minWidth="120.0" mnemonicParsing="false" onAction="#genreReset" prefHeight="35.0" prefWidth="120.0" />
+            <CheckBox id="ascendDescend" fx:id="ascendDescend" layoutX="1579.0" layoutY="104.0" maxHeight="35.0" maxWidth="151.0" minHeight="35.0" minWidth="151.0" mnemonicParsing="false" onAction="#ascendDescend" prefHeight="35.0" prefWidth="151.0" />
+            <TextField id="textSize14" fx:id="searchBox" layoutX="1603" layoutY="62.0" onAction="#searchBox" prefHeight="30.0" prefWidth="259.0" />
+            <Pane id="popupPane" fx:id="popupPane" layoutX="15.0" layoutY="143.0" maxHeight="544.0" maxWidth="761.0" minHeight="544.0" minWidth="761.0" prefHeight="544.0" prefWidth="761.0" visible="false">
+               <children>
+                  <Button id="miniClose" layoutX="731.0" layoutY="7.0" maxHeight="24.0" maxWidth="23.0" minHeight="24.0" minWidth="23.0" mnemonicParsing="false" onAction="#popupClose" prefHeight="24.0" prefWidth="23.0" />
+                  <TextField id="textSize18" fx:id="mangaTitle" editable="false" layoutX="12.0" layoutY="12.0" maxHeight="52.0" maxWidth="700.0" minHeight="52.0" minWidth="700.0" prefHeight="52.0" prefWidth="700.0" />
+                  <TextField id="textSize12" fx:id="mangaGenres" editable="false" layoutX="12.0" layoutY="349.0" maxHeight="42.0" maxWidth="729.0" minHeight="42.0" minWidth="729.0" prefHeight="42.0" prefWidth="729.0" />
+                  <TextField id="textSize12" fx:id="mangaAuthors" editable="false" layoutX="12.0" layoutY="414.0" maxHeight="42.0" maxWidth="729.0" minHeight="42.0" minWidth="729.0" prefHeight="42.0" prefWidth="729.0" />
+                  <ScrollPane id="scrollPane" layoutX="200.0" layoutY="83.0" maxHeight="242.0" maxWidth="540.0" minHeight="242.0" minWidth="540.0" prefHeight="242.0" prefWidth="540.0">
+                     <content>
+                        <TextArea id="textSize12" fx:id="mangaSummary" editable="false" maxHeight="237.0" maxWidth="535.0" minHeight="237.0" minWidth="535.0" prefHeight="237.0" prefWidth="535.0" wrapText="true" />
+                     </content>
+                  </ScrollPane>
+                  <ImageView id="popupThumb" fx:id="mangaThumb" fitHeight="250.0" fitWidth="167.0" layoutX="15.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button id="getInnerPopup" fx:id="getInnerPopup" layoutX="17.0" layoutY="482.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#showInnerPopup" />
+                  <Button id="unignore" fx:id="unignore" layoutX="15.0" layoutY="482.0" maxHeight="35.0" maxWidth="731.0" minHeight="35.0" minWidth="731.0" mnemonicParsing="false" onAction="#ignoreManga" prefHeight="35.0" prefWidth="731.0" />
+                  <Button id="ignoreManga" fx:id="ignoreManga" layoutX="389.0" layoutY="482.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#ignoreManga" prefHeight="35.0" prefWidth="357.0" />
+                   <Button id="readManga" fx:id="readManga" layoutX="15.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#readManga" />
+                   <Button id="favorite" fx:id="favorite" layoutX="265.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#sidebarFavorite" />
+                   <Button id="ignoreMangaShort" fx:id="ignoreMangaShort" layoutX="514.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#ignoreManga" prefHeight="35.0" prefWidth="232.0" />
+               </children></Pane>
+            <Pane id="innerPopup" fx:id="innerPopup" layoutX="200.0" layoutY="690.0" maxHeight="222.0" maxWidth="391.0" minHeight="222.0" minWidth="391.0" prefHeight="222.0" prefWidth="391.0" visible="false">
+               <children>
+                  <RadioButton id="haveNotRead" fx:id="haveNotRead" layoutX="17.0" layoutY="17.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getMangaButton" prefHeight="35.0" prefWidth="357.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="addMethod" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton id="haveRead" fx:id="haveRead" layoutX="17.0" layoutY="63.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getMangaButton" prefHeight="35.0" prefWidth="357.0" toggleGroup="$addMethod" />
+                  <Pane id="innerPopupNumbox" fx:id="innerPopupNumbox" layoutX="129.0" layoutY="111.0" maxHeight="46.0" maxWidth="133.0" minHeight="46.0" minWidth="133.0" prefHeight="46.0" prefWidth="133.0" visible="false">
+                     <children>
+                        <TextField id="lastChapterRead" fx:id="lastChapterRead" alignment="CENTER" layoutX="17.0" layoutY="6.0" maxHeight="30.0" maxWidth="99.0" minHeight="30.0" minWidth="99.0" prefHeight="30.0" prefWidth="99.0" />
+                     </children>
+                  </Pane>
+                  <Button id="startReading" fx:id="startReading" layoutX="17.0" layoutY="170.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getThisManga" prefHeight="35.0" prefWidth="357.0" visible="false" />
+               </children>
+            </Pane>
+         </children></Pane>
+      <Pane id="launchPane" fx:id="launchPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="true">
+         <children>
+            <Button id="availableTitles" layoutX="1101.0" layoutY="425.0" maxHeight="224.0" maxWidth="271.0" minHeight="224.0" minWidth="271.0" mnemonicParsing="false" onAction="#showAvailableMangaBooksPane" prefHeight="224.0" prefWidth="271.0" />
+            <Button id="gotoLast" layoutX="865.0" layoutY="437.0" maxHeight="237.0" maxWidth="198.0" minHeight="237.0" minWidth="198.0" mnemonicParsing="false" onAction="#goToLastMangaBookPageViewed" prefHeight="237.0" prefWidth="198.0" />
+            <Button id="myCollection" layoutX="542.0" layoutY="419.0" maxHeight="229.0" maxWidth="270.0" minHeight="229.0" minWidth="270.0" mnemonicParsing="false" onAction="#showOwnedMangaBooksPane" prefHeight="229.0" prefWidth="270.0" />
+         </children></Pane>
+      <Pane layoutX="1820.0" maxHeight="60.0" maxWidth="100.0" minHeight="60.0" minWidth="100.0" prefHeight="60.0" prefWidth="100.0">
+         <children>
+            <Button id="close" fx:id="appClose" layoutX="12.0" layoutY="10.0" maxHeight="38.0" maxWidth="37.0" minHeight="38.0" minWidth="37.0" mnemonicParsing="false" onAction="#appClose" prefHeight="38.0" prefWidth="37.0" />
+            <Button id="minimize" fx:id="appMinimize" layoutX="56.0" layoutY="10.0" maxHeight="38.0" maxWidth="37.0" minHeight="38.0" minWidth="37.0" mnemonicParsing="false" onAction="#appMinimize" prefHeight="38.0" prefWidth="37.0" />
+         </children></Pane>
+      <BorderPane id="readMangaPane" fx:id="readMangaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <center>
+            <ScrollPane id="readMangaPane" fx:id="scrollImagePane" hbarPolicy="NEVER" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+               <content>
+                  <StackPane id="readMangaPane" alignment="CENTER" maxWidth="1920.0" minWidth="1920.0" prefHeight="150.0" prefWidth="1920.0">
+                  <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true" />
+                  </StackPane>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+      <Pane id="sidebarPane" fx:id="sidebarPane" layoutX="4.0" layoutY="3.0" maxHeight="740.0" maxWidth="103.0" minHeight="740.0" minWidth="103.0" onMouseEntered="#sidebarVisible" onMouseExited="#sidebarInvisible" opacity="0" prefHeight="740.0" prefWidth="103.0" visible="false">
+         <children>
+            <Button id="sidebarPane_favorite" layoutX="15.0" layoutY="15.0" onAction="#sidebarFavorite" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="73.0" />
+            <Button id="sidebarPane_size_decrease" fx:id="sidebarPaneSizeDecrease" layoutX="15.0" layoutY="155.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" />
+            <Button id="sidebarPane_size_increase" fx:id="sidebarPaneSizeIncrease" layoutX="15.0" layoutY="240.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" visible="false" />
+            <Button id="sidebarPane_goback" layoutX="15.0" layoutY="380.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#sidebarGoBack" prefHeight="74.0" prefWidth="73.0" />
+            <TextField id="textSize42" fx:id="sidebarChapterNumber" alignment="CENTER" layoutX="-20.0" layoutY="562.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" text="174" />
+            <TextField id="textSize42" fx:id="sidebarPageNumber" alignment="CENTER" layoutX="-20.0" layoutY="663.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" text="42" />
+         </children></Pane>
+   </children>
+</AnchorPane>
