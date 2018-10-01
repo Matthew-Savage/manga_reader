@@ -27,12 +27,21 @@ public class DownloadMangaPages {
 
         IndexMangaChapters chapters = new IndexMangaChapters();
         ArrayList<String> chapterLinks = chapters.getChapterCount(webAddress);
+        System.out.println("actual downloader info: " + mangaId + " " + startingChapterNumber + " " + chapterLinks.size());
         int totalChapters = chapterLinks.size();
         int loopCount = totalChapters - startingChapter;
         int image = 0;
 
+        System.out.println("total chapters" + totalChapters);
+        System.out.println("loop count" + loopCount);
+
 //        for (int i = startingChapter; i > totalChapters - startingChapter; i--)
 
+        if (loopCount > 0) {
+            System.out.println("loopcount greater than zero!!");
+        } else {
+            System.out.println("loopcount NOT greater than zero??!");
+        }
 
         while (loopCount > 0){
             Document chapter = Jsoup.connect(chapterLinks.get(loopCount - 1)).get();
@@ -42,6 +51,7 @@ public class DownloadMangaPages {
 //                FileUtils.copyURLToFile(page,chapterFolder);
                 InputStream page = new URL(pages.select("img").first().attr("abs:src")).openStream();
                 Path to = Paths.get(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_MANGA.getValue() + File.separator + mangaId + File.separator + Integer.toString(startingChapter));
+                System.out.println(to);
                 Files.createDirectories(to);
                 Files.copy(page, Paths.get(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_MANGA.getValue() + File.separator + mangaId + File.separator + Integer.toString(startingChapter) + File.separator + String.format("%03d", image) + ".png"), StandardCopyOption.REPLACE_EXISTING);
                 image++;

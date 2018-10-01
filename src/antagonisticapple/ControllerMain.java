@@ -876,6 +876,7 @@ public class ControllerMain {
     }
 
     private Runnable downloadManga = () -> {
+        System.out.println("running main download method!");
         int downloadingStartingChapter;
         int downloadingLastChapterDownloaded;
         String downloadingTitleId;
@@ -885,6 +886,7 @@ public class ControllerMain {
 
         try {
             if (resultSet.next()) {
+                System.out.println("main download method if condition met!");
                 downloadingStartingChapter = resultSet.getInt("starting_chapter");
                 downloadingLastChapterDownloaded = resultSet.getInt("last_chapter_downloaded");
                 downloadingTitleId = resultSet.getString("title_id");
@@ -894,6 +896,7 @@ public class ControllerMain {
                 if (downloadingLastChapterDownloaded > downloadingStartingChapter) {
                     downloadingStartingChapter = downloadingLastChapterDownloaded; //so this makes sure that a resumed download starts at the last chapter that the last download left off
                 }
+                System.out.println(downloadingStartingChapter + " " + downloadingWebAddress + " " + downloadingTitleId);
                 downloadMangaPages.getChapterPages(downloadingStartingChapter, downloadingWebAddress, downloadingTitleId);
             }
 

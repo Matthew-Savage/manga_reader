@@ -95,7 +95,7 @@ public class ControllerLoader {
                 ArrayList chapterCount = indexMangaChapters.getChapterCount(resultSet.getString("web_address"));
                 updateTotalChapters = resultSet.getInt("total_chapters");
                 webAddress = resultSet.getString("web_address");
-                startingChapter = (resultSet.getInt("last_chapter_read")) + 1;
+                startingChapter = (resultSet.getInt("last_chapter_read"));
                 database.closeDb();
                 System.out.println(chapterCount.size() + "  -  chapter count!");
                 if (chapterCount.size() > updateTotalChapters) {
