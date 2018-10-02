@@ -224,21 +224,22 @@
          <center>
             <ScrollPane id="readMangaPane" fx:id="scrollImagePane" hbarPolicy="NEVER" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
                <content>
-                  <StackPane id="readMangaPane" alignment="CENTER" maxWidth="1920.0" minWidth="1920.0" prefHeight="150.0" prefWidth="1920.0">
+                  <StackPane id="readMangaPane" fx:id="imageFrame" alignment="CENTER" maxWidth="1920.0" minWidth="1920.0" prefWidth="1920.0" maxHeight="1026.0" minHeight="1026.0" prefHeight="1026.0">
                   <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true" />
                   </StackPane>
                </content>
             </ScrollPane>
          </center>
       </BorderPane>
-      <Pane id="sidebarPane" fx:id="sidebarPane" layoutX="4.0" layoutY="3.0" maxHeight="740.0" maxWidth="103.0" minHeight="740.0" minWidth="103.0" onMouseEntered="#sidebarVisible" onMouseExited="#sidebarInvisible" opacity="0" prefHeight="740.0" prefWidth="103.0" visible="false">
+      <Pane id="sidebarPane" fx:id="sidebarPane" layoutX="4.0" layoutY="3.0" maxHeight="841.0" maxWidth="103.0" minHeight="841.0" minWidth="103.0" onMouseEntered="#sidebarVisible" onMouseExited="#sidebarInvisible" opacity="0" prefHeight="841.0" prefWidth="103.0" visible="false">
          <children>
             <Button id="sidebarPane_favorite" layoutX="15.0" layoutY="15.0" onAction="#sidebarFavorite" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="73.0" />
-            <Button id="sidebarPane_size_decrease" fx:id="sidebarPaneSizeDecrease" layoutX="15.0" layoutY="155.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" />
-            <Button id="sidebarPane_size_increase" fx:id="sidebarPaneSizeIncrease" layoutX="15.0" layoutY="240.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" visible="false" />
+            <Button id="sidebarPane_size_decrease" fx:id="sidebarPaneSizeDecrease" layoutX="15.0" layoutY="155.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" visible="false" />
+            <Button id="sidebarPane_size_increase" fx:id="sidebarPaneSizeIncrease" layoutX="15.0" layoutY="240.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" />
             <Button id="sidebarPane_goback" layoutX="15.0" layoutY="380.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#sidebarGoBack" prefHeight="74.0" prefWidth="73.0" />
-            <TextField id="textSize42" fx:id="sidebarChapterNumber" alignment="CENTER" layoutX="-20.0" layoutY="562.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" text="174" />
-            <TextField id="textSize42" fx:id="sidebarPageNumber" alignment="CENTER" layoutX="-20.0" layoutY="663.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" text="42" />
+            <TextField id="textSize42" fx:id="sidebarChapterNumber" alignment="CENTER" layoutX="-20.0" layoutY="562.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" editable="false" />
+            <TextField id="textSize42" fx:id="sidebarPageNumber" alignment="CENTER" layoutX="-20.0" layoutY="663.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" editable="false" />
+            <TextField id="textSize42" fx:id="sidebarTotalChapters" alignment="CENTER" layoutX="-20.0" layoutY="764.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" editable="false" />
          </children></Pane>
    </children>
 </AnchorPane>

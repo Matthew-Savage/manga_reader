@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
-import static antagonisticapple.ControllerMain.modifyThread;
-
 public class DownloadMangaPages {
 
     private Database database = new Database();
@@ -59,9 +57,11 @@ public class DownloadMangaPages {
             image = 0;
             startingChapter++;
             updateLastChapDownloaded();
+            System.out.println(startingChapter + " starting chapter");
+            System.out.println(startingChapterNumber+1);
 //            controller.modifyThread.execute(this::updateLastChapDownloaded);
             if (startingChapter == (startingChapterNumber +1)) {
-                modifyThread.execute(this::copyToCurrentlyReading);
+                copyToCurrentlyReading();
             }
 //            database.modifyManga("downloading",Integer.parseInt(mangaID),"last_chapter_downloaded",startingChapter);
             loopCount--;

@@ -38,8 +38,8 @@ public class ControllerLoader {
 
         preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
 
-        executor.execute(this::fetchNewTitles);
-        executor.execute(this::checkForUpdates);
+//        executor.execute(this::fetchNewTitles);
+//        executor.execute(this::checkForUpdates);
         executor.execute(this::launchMainApp);
 //        thread.start();
     }

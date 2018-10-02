@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -75,6 +76,8 @@ public class ControllerMain {
     @FXML
     private BorderPane readMangaPane;
     @FXML
+    private StackPane imageFrame;
+    @FXML
     private CheckBox ascendDescend;
     @FXML
     private CheckBox genres;
@@ -92,6 +95,8 @@ public class ControllerMain {
     private TextField mangaAuthors;
     @FXML
     private TextField lastChapterRead;
+    @FXML
+    private TextField sidebarTotalChapters;
     @FXML
     private TextField searchBox;
     @FXML
@@ -148,7 +153,7 @@ public class ControllerMain {
     private ArrayList<MangaListView> mangaId = new ArrayList<>();
     private ArrayList<Integer> updateCheckAddresses = new ArrayList<>();
     private ArrayList<File> mangaPages = new ArrayList<>();
-    private File thumbsPath = new File(Values.DIR_ROOT.getValue() + File.separator+ Values.DIR_THUMBS.getValue());
+    private File thumbsPath = new File(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_THUMBS.getValue());
     private StringJoiner joiner = new StringJoiner(" AND ");
     private String webAddress;
     private String source;
@@ -214,7 +219,7 @@ public class ControllerMain {
                 scrollImagePane.setMinHeight(newValue.doubleValue());
             }
         });
-        downloadThread.scheduleWithFixedDelay(downloadManga,3,10,TimeUnit.SECONDS);
+        downloadThread.scheduleWithFixedDelay(downloadManga, 3, 10, TimeUnit.SECONDS);
     }
 
     public void appClose() {
@@ -225,12 +230,6 @@ public class ControllerMain {
     public void appMinimize() {
         Stage stage = (Stage) appMinimize.getScene().getWindow();
         stage.setIconified(true);
-    }
-
-    private void fetchManga(String pathToManga) {
-        mangaPages.clear();
-        File file = new File(pathToManga);
-        mangaPages.addAll(Arrays.asList(file.listFiles()));
     }
 
     public void readManga() {
@@ -268,19 +267,30 @@ public class ControllerMain {
         database.modifyManga(Values.DB_TABLE_READING.getValue(), selectedManga, Values.DB_TABLE_NEW_CHAPTERS.getValue(), 0);
     }
 
+    private void fetchManga(String pathToManga) {
+        mangaPages.clear();
+        File file = new File(pathToManga);
+        mangaPages.addAll(Arrays.asList(file.listFiles()));
+    }
+
     private void readMangaBook() {
         try {
             readMangaPane.setVisible(true);
             sidebarPane.setVisible(true);
             catalogPane.setVisible(false);
             popupClose();
-            readMangaPane.requestFocus();
+            imageFrame.requestFocus();
             fetchManga(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_MANGA.getValue() + File.separator + selectedManga + File.separator + lastChapterReadNumber);
+            if (currentPageNumber == -1) {
+                currentPageNumber = mangaPages.size() - 1;
+            }
+            imageView.setFitWidth(920);
             imageView.setImage(new Image(new FileInputStream(mangaPages.get(currentPageNumber))));
             imageView.setPreserveRatio(true);
             imageView.setSmooth(true);
             sidebarChapterNumber.setText(Integer.toString(lastChapterReadNumber + 1));
             sidebarPageNumber.setText(Integer.toString(currentPageNumber + 1));
+            sidebarTotalChapters.setText(Integer.toString(totalChaptersNumber));
             setNewChaptersFlagFalse();
         } catch (Exception e) {
             //not possible
@@ -288,7 +298,13 @@ public class ControllerMain {
     }
 
     public void turnMangaBookPage(KeyEvent event) {
-        readMangaPane.requestFocus();
+        imageFrame.requestFocus();
+        Robot ghostMouse = null;
+        try {
+            ghostMouse = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
         if (event.getCode() == KeyCode.D && currentPageNumber < mangaPages.size() || event.getCode() == KeyCode.RIGHT && currentPageNumber < mangaPages.size()) {
             currentPageNumber++;
             displayNextOrPreviousMangaBookPage(currentPageNumber);
@@ -299,21 +315,20 @@ public class ControllerMain {
         } else if (event.getCode() == KeyCode.A && currentPageNumber > 0 || event.getCode() == KeyCode.LEFT && currentPageNumber > 0) {
             currentPageNumber--;
             displayNextOrPreviousMangaBookPage(currentPageNumber);
+        } else if (event.getCode() == KeyCode.A && currentPageNumber == 0 && lastChapterReadNumber > 0 || event.getCode() == KeyCode.LEFT && currentPageNumber == 0 && lastChapterReadNumber > 0) {
+            lastChapterReadNumber--;
+            currentPageNumber = -1;
+            readMangaBook();
+            // change current folder to lower and current page to highest available
         } else if (event.getCode() == KeyCode.W && scrollImagePane.getVvalue() > 0.0 || event.getCode() == KeyCode.UP && scrollImagePane.getVvalue() > 0.0) {
-            try {
-                Robot ghostMouse = new Robot();
-                ghostMouse.mouseWheel(-3);
-            } catch (AWTException e) {
-                e.printStackTrace();
-            }
+            ghostMouse.mouseWheel(-3);
         } else if (event.getCode() == KeyCode.S && scrollImagePane.getVvalue() < 1.0 || event.getCode() == KeyCode.DOWN && scrollImagePane.getVvalue() < 1.0) {
-            try {
-                Robot ghostMouse = new Robot();
-                ghostMouse.mouseWheel(3);
-            } catch (AWTException e) {
-                e.printStackTrace();
-            }
+            ghostMouse.mouseWheel(3);
         }
+
+        insertMangaBookmark();
+        System.out.println("Current Page: " + currentPageNumber);
+        System.out.println("Current Chapter: " + lastChapterReadNumber);
     }
 
     private void calculateChapterNumber() {
@@ -323,14 +338,18 @@ public class ControllerMain {
             currentPageNumber = 0;
             readMangaBook();
         }
+
+        if (lastChapterReadNumber == totalChaptersNumber) {
+            finishedReading();
+        }
+    }
+
+    private void insertMangaBookmark() {
         database.openDb(Values.DB_NAME_MANGA.getValue());
         database.modifyManga("currently_reading", selectedManga, "last_chapter_read", lastChapterReadNumber);
         database.modifyManga("currently_reading", selectedManga, "current_page", currentPageNumber);
         database.createBookmark("resume_last_manga", selectedManga, totalChaptersNumber, lastChapterReadNumber, currentPageNumber);
         database.closeDb();
-        if (lastChapterReadNumber == totalChaptersNumber) {
-            finishedReading();
-        }
     }
 
     private void finishedReading() {
@@ -350,15 +369,18 @@ public class ControllerMain {
 
     public void sidebarInvisible() {
         sidebarPane.setOpacity(0);
+        imageFrame.requestFocus();
     }
 
     public void sidebarFavorite() {
-        MangaListView view = mangaId.get(thumbNumber);
-        view.setFavorite(true);
-        populateDisplay();
+        if (currentActivity.getValue() != null) {
+            MangaListView view = mangaId.get(thumbNumber);
+            view.setFavorite(true);
+            populateDisplay();
+        }
 
         database.openDb(Values.DB_NAME_MANGA.getValue());
-        database.modifyManga("currently_reading",selectedManga,"favorite",1);
+        database.modifyManga("currently_reading", selectedManga, "favorite", 1);
         database.closeDb();
         // modify the manga list itself to change favorite value from 0 to 1 and then run populate display. allows us to add a favorite without querying the database
     }
@@ -414,7 +436,9 @@ public class ControllerMain {
         readMangaPane.setVisible(false);
         sidebarPane.setVisible(false);
         launchPane.setVisible(true);
-        databaseInit();
+        if (currentActivity.getValue() != null) {
+            databaseInit();
+        }
     }
 
     private void forceNumbersOnly(Number oldValue, Number newValue, TextField textField) {
@@ -503,8 +527,6 @@ public class ControllerMain {
     }
 
     private void searchStringBuilder() {
-//        GenreMap genreMap = new GenreMap();
-//        Map<String, String> genres = genreMap.getGenreMap();
         Map<String, String> genres = GenreMap.getGenreMap();
 
         for (int i = 0; i < 39; i++) {
@@ -650,20 +672,20 @@ public class ControllerMain {
         ResultSet resultSet = database.workingGenreFilter(columnName, tableName, requestedData, sortByValue, sortOrder);
 
 
-            try {
-                if (resultSet.next()) {
-                    do {
-                        if (currentActivity.getValue().equals("My Library")) {
-                            mangaId.add(new MangaListView(resultSet.getString("title_id"),resultSet.getBoolean("new_chapters"),resultSet.getBoolean("favorite")));
-                        } else {
+        try {
+            if (resultSet.next()) {
+                do {
+                    if (currentActivity.getValue().equals("My Library")) {
+                        mangaId.add(new MangaListView(resultSet.getString("title_id"), resultSet.getBoolean("new_chapters"), resultSet.getBoolean("favorite")));
+                    } else {
 //                            mangaId.add(resultSet.getString("title_id"));
-                            mangaId.add(new MangaListView(resultSet.getString("title_id"), false, false));
-                        }
-                    } while (resultSet.next());
-                }
-            } catch (Exception e) {
-                System.out.println(e + "  supposedly not possible fml");
+                        mangaId.add(new MangaListView(resultSet.getString("title_id"), false, false));
+                    }
+                } while (resultSet.next());
             }
+        } catch (Exception e) {
+            System.out.println(e + "  supposedly not possible fml");
+        }
 
         database.closeDb();
         populateDisplay();
@@ -674,9 +696,9 @@ public class ControllerMain {
         hideThumbs();
         int numberOfLoops = 30;
 
-            if (mangaId.size() < 30) {
-                numberOfLoops = mangaId.size();
-            }
+        if (mangaId.size() < 30) {
+            numberOfLoops = mangaId.size();
+        }
 
 
         try {
@@ -686,7 +708,7 @@ public class ControllerMain {
                 favoriteOverlay = favoriteOverlayViews.get(i);
                 newChaptersOverlay = newChaptersOverlayViews.get(i);
                 thumbImage.setSmooth(true);
-                    thumbImage.setImage(new Image(new FileInputStream(thumbsPath + File.separator + view.getMangaNumber() + ".jpg")));
+                thumbImage.setImage(new Image(new FileInputStream(thumbsPath + File.separator + view.getMangaNumber() + ".jpg")));
                 if (view.isFavorite()) {
                     favoriteOverlay.setImage(new Image("assets/favorite_overlay.png"));
                 }
@@ -865,13 +887,13 @@ public class ControllerMain {
         }
 
         database.openDb(Values.DB_NAME_MANGA.getValue());
-        database.moveManga(tableName,Values.DB_TABLE_DOWNLOAD_PENDIND.getValue(),selectedManga);
+        database.moveManga(tableName, Values.DB_TABLE_DOWNLOAD_PENDIND.getValue(), selectedManga);
         database.closeDb();
     }
 
     private void copyToDownloading() {
         database.openDb(Values.DB_NAME_DOWNLOADING.getValue());
-        database.downloadQueueAdd("downloading",selectedManga,webAddress,startingChapter,0);
+        database.downloadQueueAdd("downloading", selectedManga, webAddress, startingChapter, 0);
         database.closeDb();
     }
 
@@ -989,7 +1011,7 @@ public class ControllerMain {
         clearThumbs();
         hideThumbs();
         popupClose();
-//        int position = mangaId.size() - mangaId.size() % 30; - this is a duplicate of pagenumber, whats its fucking purpose? lol I dont know.
+//        int position = mangaId.size() - mangaId.size() % 30; - this is a duplicate of pagenumber, whats its purpose? lol I dont know.
         int view = 0;
         pageNumber = mangaId.size() - mangaId.size() % 30;
 
