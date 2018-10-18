@@ -20,11 +20,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -132,7 +137,11 @@ public class ControllerMain {
     @FXML
     private Button getInnerPopup;
     @FXML
+    private Button getIssuePopup;
+    @FXML
     private Button ignoreMangaShort;
+    @FXML
+    private Button rereadManga;
     @FXML
     private Button favorite;
     @FXML
@@ -156,15 +165,13 @@ public class ControllerMain {
     private File thumbsPath = new File(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_THUMBS.getValue());
     private StringJoiner joiner = new StringJoiner(" AND ");
     private String webAddress;
-    private String source;
-    private String dest;
     private int startingChapter;
     private int pageNumber = 0;
     private int selectedManga = -1;
     private int lastChapterReadNumber;
     private int totalChaptersNumber;
     private int currentPageNumber;
-    static Executor modifyThread = Executors.newSingleThreadExecutor();
+    private static Executor modifyThread = Executors.newSingleThreadExecutor();
     private ScheduledExecutorService downloadThread = Executors.newScheduledThreadPool(1);
     private IndexMangaChapters indexMangaChapters = new IndexMangaChapters();
     private DownloadMangaPages downloadMangaPages = new DownloadMangaPages();
@@ -232,9 +239,39 @@ public class ControllerMain {
         stage.setIconified(true);
     }
 
+    public void mangaProblem() {
+
+    }
+
     public void readManga() {
         chapterNumber();
         readMangaBook();
+    }
+
+    public void changeCompletedToReading() {
+        database.openDb(Values.DB_NAME_MANGA.getValue());
+        database.modifyManga(Values.DB_TABLE_COMPLETED.getValue(), selectedManga, "last_chapter_read", getFirstChapter(selectedManga));
+        database.moveManga(Values.DB_TABLE_COMPLETED.getValue(), Values.DB_TABLE_READING.getValue(), selectedManga);
+        database.closeDb();
+        popupClose();
+        lastChapterReadNumber = 0;
+        currentPageNumber = 0;
+        readMangaBook();
+    }
+
+    private int getFirstChapter(int mangaDir) {
+        boolean dirNotPresent = true;
+        int dirNumber = 0;
+
+        do {
+            if (Files.notExists(Paths.get(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_MANGA.getValue() + File.separator + mangaDir + File.separator + dirNumber))) {
+                dirNumber++;
+            } else {
+                dirNotPresent = false;
+                return dirNumber;
+            }
+        } while (dirNotPresent);
+        return -1;
     }
 
     private void chapterNumber() {
@@ -273,13 +310,17 @@ public class ControllerMain {
         mangaPages.addAll(Arrays.asList(file.listFiles()));
     }
 
+    private void readerRequestFocus() {
+        scrollImagePane.requestFocus();
+    }
+
     private void readMangaBook() {
         try {
             readMangaPane.setVisible(true);
             sidebarPane.setVisible(true);
             catalogPane.setVisible(false);
             popupClose();
-            imageFrame.requestFocus();
+            readerRequestFocus();
             fetchManga(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_MANGA.getValue() + File.separator + selectedManga + File.separator + lastChapterReadNumber);
             if (currentPageNumber == -1) {
                 currentPageNumber = mangaPages.size() - 1;
@@ -298,13 +339,15 @@ public class ControllerMain {
     }
 
     public void turnMangaBookPage(KeyEvent event) {
-        imageFrame.requestFocus();
+        readerRequestFocus();
         Robot ghostMouse = null;
+
         try {
             ghostMouse = new Robot();
         } catch (AWTException e) {
             e.printStackTrace();
         }
+
         if (event.getCode() == KeyCode.D && currentPageNumber < mangaPages.size() || event.getCode() == KeyCode.RIGHT && currentPageNumber < mangaPages.size()) {
             currentPageNumber++;
             displayNextOrPreviousMangaBookPage(currentPageNumber);
@@ -312,21 +355,23 @@ public class ControllerMain {
 //            modifyThread.execute(this::calculateChapterNumber);
 //            new Thread(mangaPageTurned).start();
             calculateChapterNumber();
+            insertMangaBookmark();
         } else if (event.getCode() == KeyCode.A && currentPageNumber > 0 || event.getCode() == KeyCode.LEFT && currentPageNumber > 0) {
             currentPageNumber--;
             displayNextOrPreviousMangaBookPage(currentPageNumber);
+            insertMangaBookmark();
         } else if (event.getCode() == KeyCode.A && currentPageNumber == 0 && lastChapterReadNumber > 0 || event.getCode() == KeyCode.LEFT && currentPageNumber == 0 && lastChapterReadNumber > 0) {
             lastChapterReadNumber--;
             currentPageNumber = -1;
             readMangaBook();
             // change current folder to lower and current page to highest available
+            insertMangaBookmark();
         } else if (event.getCode() == KeyCode.W && scrollImagePane.getVvalue() > 0.0 || event.getCode() == KeyCode.UP && scrollImagePane.getVvalue() > 0.0) {
             ghostMouse.mouseWheel(-3);
         } else if (event.getCode() == KeyCode.S && scrollImagePane.getVvalue() < 1.0 || event.getCode() == KeyCode.DOWN && scrollImagePane.getVvalue() < 1.0) {
             ghostMouse.mouseWheel(3);
         }
 
-        insertMangaBookmark();
         System.out.println("Current Page: " + currentPageNumber);
         System.out.println("Current Chapter: " + lastChapterReadNumber);
     }
@@ -369,7 +414,7 @@ public class ControllerMain {
 
     public void sidebarInvisible() {
         sidebarPane.setOpacity(0);
-        imageFrame.requestFocus();
+        readerRequestFocus();
     }
 
     public void sidebarFavorite() {
@@ -429,7 +474,6 @@ public class ControllerMain {
                     break;
             }
         }
-
     }
 
     public void sidebarGoBack() {
@@ -760,6 +804,8 @@ public class ControllerMain {
             ignoreManga.setVisible(false);
             getInnerPopup.setVisible(false);
             unignore.setVisible(false);
+            rereadManga.setVisible(false);
+            getIssuePopup.setDisable(false);
         } else if (currentActivity.getSelectionModel().getSelectedItem().equals("Available Manga")) {
             ignoreMangaShort.setVisible(false);
             favorite.setVisible(false);
@@ -767,6 +813,8 @@ public class ControllerMain {
             ignoreManga.setVisible(true);
             getInnerPopup.setVisible(true);
             unignore.setVisible(false);
+            rereadManga.setVisible(false);
+            getIssuePopup.setDisable(true);
         } else if (currentActivity.getSelectionModel().getSelectedItem().equals("Not Interested")) {
             ignoreMangaShort.setVisible(false);
             favorite.setVisible(false);
@@ -774,6 +822,17 @@ public class ControllerMain {
             ignoreManga.setVisible(false);
             getInnerPopup.setVisible(false);
             unignore.setVisible(true);
+            rereadManga.setVisible(false);
+            getIssuePopup.setDisable(true);
+        } else if (currentActivity.getSelectionModel().getSelectedItem().equals("Finished Reading")) {
+            ignoreMangaShort.setVisible(true);
+            favorite.setVisible(true);
+            readManga.setVisible(false);
+            ignoreManga.setVisible(false);
+            getInnerPopup.setVisible(false);
+            unignore.setVisible(false);
+            rereadManga.setVisible(true);
+            getIssuePopup.setDisable(true);
         }
 
         if (thumbNumber <= 14) {
@@ -801,6 +860,8 @@ public class ControllerMain {
         mangaGenres.setText(results.getString("genre_tags").substring(0, results.getString("genre_tags").length() - 1));
         mangaAuthors.setText(results.getString("authors").substring(0, results.getString("authors").length() - 1));
         webAddress = results.getString("web_address");
+        totalChaptersNumber = results.getInt("total_chapters");
+
         database.closeDb();
         results.close();
         selectedManga = Integer.parseInt(view.getMangaNumber());

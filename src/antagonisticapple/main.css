@@ -28,6 +28,11 @@
     -fx-border-color: transparent;
 }
 
+#readMangaPane > .viewport {
+    -fx-background-color: black;
+    -fx-border-color: transparent;
+}
+
 #innerPopup {
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/inner_popup.png");
@@ -417,6 +422,18 @@
     -fx-border-color: transparent;
 }
 
+#issue {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/issue.png");
+    -fx-border-color: transparent;
+}
+
+#issue:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/issue_pressed.png");
+    -fx-border-color: transparent;
+}
+
 #readManga {
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/read.png");
@@ -426,6 +443,18 @@
 #readManga:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/read_pressed.png");
+    -fx-border-color: transparent;
+}
+
+#rereadManga {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/reread.png");
+    -fx-border-color: transparent;
+}
+
+#rereadManga:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/reread_pressed.png");
     -fx-border-color: transparent;
 }
 

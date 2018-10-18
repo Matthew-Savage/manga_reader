@@ -33,14 +33,6 @@ public class DownloadMangaPages {
         System.out.println("total chapters" + totalChapters);
         System.out.println("loop count" + loopCount);
 
-//        for (int i = startingChapter; i > totalChapters - startingChapter; i--)
-
-        if (loopCount > 0) {
-            System.out.println("loopcount greater than zero!!");
-        } else {
-            System.out.println("loopcount NOT greater than zero??!");
-        }
-
         while (loopCount > 0){
             Document chapter = Jsoup.connect(chapterLinks.get(loopCount - 1)).get();
             for (Element pages : chapter.select(".vung-doc .img_content")) {

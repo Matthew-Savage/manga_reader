@@ -63,6 +63,7 @@ public class PopulateMangaCatalog {
                             startingPage++;
                         }
                     } catch (Exception e) {
+                        System.out.println("this is the exception to check if website is down! inserting a break should fix it, or a stop or a kill or whatever it is");
                         e.printStackTrace();
                     }
                 } while (!matchFound);
