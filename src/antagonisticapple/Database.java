@@ -24,13 +24,31 @@ public class Database {
         }
     }
 
-    public void modifyManga(String tableName, int mangaID, String columnToModify, int newColumnValue) {
+
+    <T> void modifyManga(String tableName, int mangaId, String columnToModify, T newColumnValue) {
         try(Statement sqlStatement = dbConnect.createStatement()) {
-            sqlStatement.execute("UPDATE " + tableName + " SET " + columnToModify + " = " + newColumnValue + " WHERE title_id = '" + mangaID + "'");
+            sqlStatement.execute("UPDATE " + tableName + " SET " + columnToModify + " = '" + newColumnValue + "' WHERE title_id = '" + mangaId + "'");
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "   db message");
         }
+
     }
+
+//    public void modifyManga(String tableName, int mangaID, String columnToModify, int newColumnValue) {
+//        try(Statement sqlStatement = dbConnect.createStatement()) {
+//            sqlStatement.execute("UPDATE " + tableName + " SET " + columnToModify + " = " + newColumnValue + " WHERE title_id = '" + mangaID + "'");
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "   db message");
+//        }
+//    }
+//
+//    public void modifyMangaValueString(String tableName, int mangaID, String columnToModify, String newColumnValue) {
+//        try(Statement sqlStatement = dbConnect.createStatement()) {
+//            sqlStatement.execute("UPDATE " + tableName + " SET " + columnToModify + " = " + newColumnValue + " WHERE title_id = '" + mangaID + "'");
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "   db message");
+//        }
+//    }
 
     void downloadQueueAdd(String tableName, int titleId, String webAddress, int startingChapter, int lastChapterDownloaded) {
         try(Statement sqlStatement = dbConnect.createStatement()) {
@@ -57,10 +75,33 @@ public class Database {
         }
     }
 
+    public void downloadDbAttach() {
+        try(Statement sqlStatement = dbConnect.createStatement()) {
+            sqlStatement.execute("ATTACH DATABASE '" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + Values.DB_NAME_DOWNLOADING.getValue() + "' AS downloadDb");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void downloadDbDetach() {
+        try(Statement sqlStatement = dbConnect.createStatement()) {
+            sqlStatement.execute("DETACH DATABASE 'downloadDb'");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteManga(String sourceTable, int mangaID) {
+        try(Statement sqlStatement = dbConnect.createStatement()) {
+            sqlStatement.execute("DELETE FROM " + sourceTable + " WHERE title_id = '" + mangaID + "'");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void moveManga(String sourceTable, String destinationTable, int mangaID) {
         try(Statement sqlStatement = dbConnect.createStatement()) {
             sqlStatement.execute("INSERT INTO " + destinationTable + " SELECT * FROM " + sourceTable + " WHERE title_id = '" + mangaID + "'");
-            sqlStatement.execute("DELETE FROM " + sourceTable + " WHERE title_id = '" + mangaID + "'");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -91,7 +132,8 @@ public class Database {
     public void updateNewestManga(String tableName, int mangaId, String title) {
         try {
             Statement sqlStatement = dbConnect.createStatement();
-            sqlStatement.execute("DELETE FROM " + tableName + " WHERE rowid=1");
+//            sqlStatement.execute("DELETE FROM " + tableName + " WHERE rowid=1"); //replacing this with a deleteall instead of only rowid1
+            sqlStatement.execute("DELETE FROM " + tableName);
             sqlStatement.execute("INSERT OR REPLACE INTO " + tableName + " (title_id, title) VALUES ('" + mangaId + "', '" + title + "')");
         } catch (Exception e) {
             System.out.println(e);

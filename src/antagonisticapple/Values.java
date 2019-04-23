@@ -90,11 +90,17 @@ public enum Values {
     DB_TABLE_RESUME_READING ("resume_last_manga"),
     DB_TABLE_NEW_CHAPTERS ("new_chapters"),
     DB_TABLE_FAVORITE ("favorite"),
+    DB_ATTACHED_PREFIX ("main."),
+    DB_ATTACHED_AVAILABLE ("main.available_manga"),
+    DB_ATTACHED_READING ("main.currently_reading"),
+    DB_ATTACHED_DOWNLOADING ("downloadDb.downloading"),
 //    DIR_ROOT (GetApplicationPath.getPath()),  //live dir
-    DIR_ROOT  ("C:\\Program Files (x86)\\Cupcaked Manga Reader"),  //development dir
+    DIR_ROOT  ("C:\\Users\\Apple\\Cupcaked Manga Reader"),  //development dir
     DIR_MANGA ("manga"),
     DIR_DB  ("data"),
-    DIR_THUMBS ("thumbs");
+    DIR_THUMBS ("thumbs"),
+    URL_ROOT ("https://manganelo.com/"),
+    URL_SEARCH ("search/");
 
     private String value;
 

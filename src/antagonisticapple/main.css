@@ -1,3 +1,13 @@
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
 #launchPane {
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/launchbg.png");
@@ -18,6 +28,11 @@
     -fx-background-image: url("../assets/popup.png");
 }
 
+#errorPane {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/error.png");
+}
+
 #pageNumTextPane {
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/pagenumber.png");
@@ -36,6 +51,11 @@
 #innerPopup {
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/inner_popup.png");
+}
+
+#repairPopup {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/inner_popup_repair.png");
 }
 
 #innerPopupNumbox {
@@ -77,6 +97,18 @@
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../assets/reset_results_pressed.png");
+}
+
+#errorButton {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/error_button.png");
+}
+
+#errorButton:pressed {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/error_button_pressed.png");
 }
 
 #haveRead {
@@ -217,6 +249,16 @@
 
 #startReading:pressed {
     -fx-background-image: url("../assets/add_manga_pressed.png");
+}
+
+#repairError {
+    -fx-border-color: transparent;
+    -fx-background-image: url("../assets/repair.png");
+}
+
+#repairError:pressed {
+    -fx-border-color: transparent;
+    -fx-background-image: url("../assets/repair_pressed.png");
 }
 
 #textSize42 {
@@ -602,9 +644,39 @@
     -fx-border-color: transparent;
 }
 
+#sidebarPane_scroll_down {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/scroll_decrease.png");
+    -fx-border-color: transparent;
+}
+
+#sidebarPane_scroll_down:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/scroll_decrease_pressed.png");
+    -fx-border-color: transparent;
+}
+
+#sidebarPane_scroll_up {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/scroll_increase.png");
+    -fx-border-color: transparent;
+}
+
+#sidebarPane_scroll_up:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/scroll_increase_pressed.png");
+    -fx-border-color: transparent;
+}
+
+#thumb0Pane  {
+    -fx-background-color: red;
+}
+
 #thumb0, #thumb1, #thumb2, #thumb3, #thumb4, #thumb5, #thumb6, #thumb7, #thumb8, #thumb9, #thumb10, #thumb11, #thumb12, #thumb13, #thumb14, #thumb15, #thumb16, #thumb17, #thumb18, #thumb19, #thumb20, #thumb21, #thumb22, #thumb23, #thumb24, #thumb25, #thumb26, #thumb27, #thumb28, #thumb29,
 #thumb30, #thumb31, #thumb32, #thumb33, #thumb34, #thumb35, #thumb36, #thumb37, #thumb38, #popupThumb {
     -fx-effect: dropShadow( three-pass-box, #795e69, 3, 0.0, 4, 4);
+    /*-fx-effect: innershadow( three-pass-box, #795e69, 3, 1.0, 4, 4);*/
+    /*-fx-effect: dropShadow( three-pass-box, #000000, 3, 0.0, 4, 4);*/
 }
 
 #genre0 .box, #genre0 .mark, #genre1 .box, #genre1 .mark, #genre2 .box, #genre2 .mark, #genre3 .box, #genre3 .mark, #genre4 .box, #genre4 .mark, #genre5 .box, #genre5 .mark, #genre6 .box, #genre6 .mark, #genre7 .box, #genre7 .mark, #genre8 .box, #genre8 .mark

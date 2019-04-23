@@ -10,7 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -29,19 +31,17 @@ public class ControllerLoader {
     TextField preloadProgressBottom;
 
     private Database database = new Database();
-    private IndexMangaChapters indexMangaChapters = new IndexMangaChapters();
-    private DbMoveAndCopy dbMoveAndCopy = new DbMoveAndCopy();
     private PopulateMangaCatalog populate = new PopulateMangaCatalog(this);
     private Executor executor = Executors.newSingleThreadExecutor();
 
     public void initialize() {
 
-        preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
-
-//        executor.execute(this::fetchNewTitles);
-//        executor.execute(this::checkForUpdates);
+        if (InternetConnection.checkIfConnected()) {
+            preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
+//            executor.execute(this::fetchNewTitles);
+//            executor.execute(this::checkForUpdates);
+        }
         executor.execute(this::launchMainApp);
-//        thread.start();
     }
 
 
@@ -87,29 +87,41 @@ public class ControllerLoader {
                     updateCheckAddresses.add(resultSet.getInt("title_id"));
                 } while (resultSet.next());
                 resultSet.close();
-            database.closeDb();
-            for (int i = 0; i < updateCheckAddresses.size(); i++) {
-                selectedManga = updateCheckAddresses.get(i);
-                database.openDb(Values.DB_NAME_MANGA.getValue());
-                resultSet = database.filterManga("completed", "title_id", Integer.toString(selectedManga));
-                ArrayList chapterCount = indexMangaChapters.getChapterCount(resultSet.getString("web_address"));
-                updateTotalChapters = resultSet.getInt("total_chapters");
-                webAddress = resultSet.getString("web_address");
-                startingChapter = (resultSet.getInt("last_chapter_read"));
                 database.closeDb();
-                System.out.println(chapterCount.size() + "  -  chapter count!");
-                if (chapterCount.size() > updateTotalChapters) {
-                    int sizeDifference = chapterCount.size() - updateTotalChapters;
-                    System.out.println("holy shit a manga " + updateCheckAddresses.get(i) + " has " + sizeDifference + " new chapters!");
-//                    chapterPages.getChapterPages(updateTotalChapters, updateWebAddress, Integer.toString(selectedManga));
+                for (int i = 0; i < updateCheckAddresses.size(); i++) {
+                    selectedManga = updateCheckAddresses.get(i);
                     database.openDb(Values.DB_NAME_MANGA.getValue());
-                    database.modifyManga("completed", selectedManga, "total_chapters", chapterCount.size());
-                    database.modifyManga("completed", selectedManga, "last_chapter_read", startingChapter);
-                    database.modifyManga("completed", selectedManga, "new_chapters", 1);
-                    database.moveManga("completed", "download_pending", selectedManga);
+                    resultSet = database.filterManga("completed", "title_id", Integer.toString(selectedManga));
+                    ArrayList chapterCount = IndexMangaChapters.getChapterAddresses(resultSet.getString("web_address"));
+                    updateTotalChapters = resultSet.getInt("total_chapters");
+                    webAddress = resultSet.getString("web_address");
+                    startingChapter = (resultSet.getInt("last_chapter_read"));
                     database.closeDb();
-                    dbMoveAndCopy.copyToDownloading(selectedManga, webAddress, startingChapter);
-                }
+                    System.out.println(chapterCount.size() + "  -  chapter count!");
+                    if (chapterCount.size() > updateTotalChapters) {
+                        int sizeDifference = chapterCount.size() - updateTotalChapters;
+                        System.out.println("holy shit a manga " + updateCheckAddresses.get(i) + " has " + sizeDifference + " new chapters!");
+//                    chapterPages.getChapterPages(updateTotalChapters, updateWebAddress, Integer.toString(selectedManga));
+                        database.openDb(Values.DB_NAME_MANGA.getValue());
+                        database.modifyManga("completed", selectedManga, "total_chapters", chapterCount.size());
+//                    database.modifyManga("completed", selectedManga, "last_chapter_read", startingChapter); this doesnt change
+                        database.modifyManga("completed", selectedManga, "new_chapters", 1);
+                        database.closeDb();
+                        //redundant with a method in ControllerMain class
+                        database.openDb(Values.DB_NAME_DOWNLOADING.getValue());
+                        database.openDb(Values.DB_NAME_MANGA.getValue());
+                        database.downloadDbAttach();
+                        database.moveManga(Values.DB_ATTACHED_PREFIX.getValue() + Values.DB_TABLE_COMPLETED.getValue(), Values.DB_ATTACHED_DOWNLOADING.getValue(), selectedManga);
+                        database.deleteManga(Values.DB_ATTACHED_PREFIX.getValue() + Values.DB_TABLE_COMPLETED.getValue(), selectedManga);
+                        database.downloadDbDetach();
+                        database.closeDb();
+                        database.closeDb();
+                        //end redundant
+
+//                        database.moveManga("completed", "download_pending", selectedManga);
+//                        database.closeDb();
+//                        dbMoveAndCopy.copyToDownloading(selectedManga, webAddress, startingChapter);
+                    }
                 }
             }
             clearProgressText();

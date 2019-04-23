@@ -5,9 +5,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import java.util.ArrayList;
 
-public class IndexMangaChapters {
+class IndexMangaChapters {
 
-    public ArrayList getChapterCount(String webAddress) throws Exception{
+    static ArrayList<String> getChapterAddresses(String webAddress) throws Exception{
         ArrayList<String> linksList = new ArrayList<>();
 
         Document mangaChapters = Jsoup.connect(webAddress).get();
